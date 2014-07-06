@@ -1,49 +1,55 @@
-# boilerplate [![NPM version](https://badge.fury.io/js/assemble-boilerplate.png)](http://badge.fury.io/js/assemble-boilerplate)
+业务场景(Case)
+=====================
 
-> Boilerplate for [Assemble](https://github.com/assemble/assemble)
+ 1. 跨域模块部署在不同域 
+ 2. 复用一个模块需要拷贝多个部件（样式 脚本 模板（存放在非静态域））， 修改一个地方需要同步N个地方
+ 3. 在1的基础上诞生了同一个模块的多个版本（同步不及时或者自定义修改） 
+ 4. 在1，2，3的基础上，引用模块的哪个版本， 拷贝哪些部件及调试模块的长相让人很烦恼
 
-Please [create an issue](https://github.com/assemble/boilerplate/issues) if you find a bug or have a feature request.
+----------
 
+jHub简介（Intro）
+=====================
+jHub认为模块（Module）的定义看起来像是这样：一个模块对应一个业务，由脚本，样式，模板，依赖，配置文件(package.json)组成, 并且拥有唯一url。
+jHub就是一个集线器（Module），负责组装这些元件，其目录结构如下：
 
-## Getting Started
+modules：元件组装车间
+- stores：数据源元件（可重用的资源！）
+- views：业务逻辑元件（可重用的资源！）
+- styles：样式元件（可重用的资源！）
+- templates：模板元件（可重用的资源！）
 
-**1. Download the project**
+现在，引用一个模块变得简单：
 
-Install the project locally using one of the following options:
+> jHub.load('moduleurl')
 
-* Using git: `git clone git://github.com/assemble/boilerplate.git`
-* [Download the project](https://github.com/assemble/boilerplate/archive/master.zip)
+----------
+ 
+ToDo或发展计划（Roadmap）
+=====================
+1）路由支持（Todo）
+2）Node.js支持 (Todo)
+3）如果您对其他框架的某一“炫酷”功能感到激动不已，您可以亲手参与jHub的插件计划
+ 
+自动化（Automation）
+=====================
+可根据需要决定是否在预编译阶段，合并模块各元件，输出output.js
 
-Next, to optionally install [Bootstrap](https://github.com/twbs/bootstrap) using [Bower](https://github.com/bower/bower), simply run
+----------
 
-```bash
-bower install
-```
+FAQ
+=====================
 
-**2. Install Dependencies**
+ 1. **如何适应现有开发环境？**
+    - jHub的模块遵循CMD规范，与我们当前的模块规范一致，并且后者对应前者的view元 
+    - jHub的五大元件之间几乎没有“关系”，完全可以根据实际情况决定是否使用某一元件
+ 2. **jHub与其他类MVC框架有何不同？** 
+    - jHub中的核心单元为模块（Module)
+    - jHub中的view（Controller-Views）与store（对应传统model与collection）之间通过事件交互，侧面回答了这个问题：[Facebook：MVC不适合大规模应用，改用Flux][1]
+    - jHub集成模块依赖处理
+ 3. **jHub如何为网页提速？**
+    - 通过将页面瓜分成不同的模块，jHub可以并发请求多个模块，并且可操控模块呈现的优先级。（参见：[BigPipe][2] 原理）
 
-Run `npm i` to install dependencies.
-
-**3. Build**
-
-If everything installed correctly, running `grunt` in the command line should successfully build the project to the `./_gh_pages` directory inside the project.
-
-**4. Remove "first run" Targets**
-
-Inside the [Gruntfile](./Gruntfile.js) you will find a few targets that should be removed after the first run. These are labeled accordingly.
-
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
-
-## License
-Copyright (c) 2013 Jon Schlinkert
-Licensed under the [MIT license](LICENSE-MIT).
-
-***
-
-Project created by [Jon Schlinkert](https://github.com/jonschlinkert).
-
-_This file was generated on Saturday, December 7, 2013._
-
-[grunt]: http://gruntjs.com
+  [1]: http://www.infoq.com/cn/news/2014/05/facebook-mvc-flux
+  [2]: http://www.searchtb.com/2011/04/an-introduction-to-bigpipe.html
+  

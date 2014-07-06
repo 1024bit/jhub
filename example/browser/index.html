@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jHub!</title>
+    </head>
+    <body>
+        <div id="index1">
+        Debugging...
+        </div>
+        
+        <script type="text/javascript" src="http://git.com/jquery/dist/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="http://projects.com/jnode/jnode.js"></script>
+        <!-- <script type="text/javascript" src="http://projects.com/jhub/core/jhub.js"></script> -->
+        <script type="text/javascript">
+            jNode.require('/jhub/lib/core/jhub', function() {
+                jHub.set({
+                    appPath: '/jhub/example/browser/', 
+                    // 外部依赖
+                    dependencies: [
+                        '/jhub/lib/proxies/tpl/dot.js'
+                    ], 
+                    tplProxy: {name: 'dot'}
+                });
+                // Bigpipe
+                jHub.load('index');
+                // jHub.load('modules/index');
+                // jHub.load('modules/index2');
+                // jHub.load('modules/index3');
+            });
+
+        </script>
+    </body>
+</html>

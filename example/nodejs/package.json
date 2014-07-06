@@ -1,0 +1,13 @@
+/**
+ * For Node.js
+ */
+{
+    "name": "node-example",
+    "version": 1.0.0,
+    "dependencies": {
+        "jhub": "1.0.0"
+    },
+    "devDependencies": {
+    },
+    "main": "index.js"
+}
